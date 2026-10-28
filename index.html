@@ -1,1275 +1,1097 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Marsh Drone | South Louisiana Aerial Imaging</title>
-
-    <meta name="description"
-          content="Marsh Drone provides aerial photography, video, construction documentation, and mapping services throughout South Louisiana.">
-
-    <style>
-
-        /* =========================
-           GLOBAL
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #071a1b;
-            color: #f5f4ee;
-            line-height: 1.6;
-        }
-
-        img {
-            width: 100%;
-            display: block;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        section {
-            padding: 110px 8%;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: auto;
-        }
-
-
-        /* =========================
-           NAVIGATION
-        ========================= */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 22px 7%;
-
-            background: rgba(7, 26, 27, 0.88);
-            backdrop-filter: blur(14px);
-
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .logo {
-            font-size: 1.35rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-        }
-
-        .logo span {
-            display: block;
-            font-size: 0.65rem;
-            font-weight: 400;
-            letter-spacing: 5px;
-            opacity: 0.65;
-            margin-top: -2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a {
-            opacity: 0.75;
-            transition: 0.25s;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-
-            position: relative;
-            overflow: hidden;
-
-            padding: 140px 8% 90px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(5,20,21,0.95),
-                    rgba(5,20,21,0.72),
-                    rgba(5,20,21,0.30)
-                ),
-                linear-gradient(
-                    180deg,
-                    #123d3c,
-                    #071a1b
-                );
-        }
-
-        /*
-        FUTURE HERO VIDEO
-
-        When we have your video uploaded, we'll replace the
-        background above with your actual drone footage.
-        */
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .eyebrow {
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.75rem;
-            opacity: 0.65;
-            margin-bottom: 22px;
-        }
-
-        .hero h1 {
-            font-size: clamp(3.5rem, 8vw, 7.5rem);
-            line-height: 0.92;
-            letter-spacing: -4px;
-            margin-bottom: 30px;
-        }
-
-        .hero h1 span {
-            font-weight: 300;
-        }
-
-        .hero-description {
-            max-width: 620px;
-            font-size: 1.15rem;
-            opacity: 0.78;
-            margin-bottom: 38px;
-        }
-
-        .button {
-            display: inline-block;
-
-            padding: 15px 28px;
-
-            background: #e8e4d7;
-            color: #071a1b;
-
-            font-weight: 700;
-
-            border-radius: 3px;
-
-            transition: 0.25s;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        .button-outline {
-            margin-left: 10px;
-
-            background: transparent;
-            color: #f5f4ee;
-
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-
-
-        /* =========================
-           INTRO
-        ========================= */
-
-        .intro {
-            background: #f2f1eb;
-            color: #102526;
-        }
-
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .section-label {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.7rem;
-            opacity: 0.55;
-        }
-
-        .intro h2 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.02;
-            margin-top: 12px;
-        }
-
-        .intro p {
-            font-size: 1.05rem;
-            opacity: 0.68;
-            margin-top: 22px;
-            max-width: 580px;
-        }
-
-
-        /* =========================
-           SERVICES
-        ========================= */
-
-        .services {
-            background: #e5e3db;
-            color: #102526;
-        }
-
-        .services-header {
-            max-width: 700px;
-            margin-bottom: 55px;
-        }
-
-        .services-header h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1;
-            margin-top: 10px;
-        }
-
-        .services-header p {
-            margin-top: 18px;
-            opacity: 0.65;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-
-        .service-card {
-            padding: 40px;
-            min-height: 250px;
-
-            background: #f7f6f1;
-            border: 1px solid #d1d0c8;
-
-            transition: 0.25s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.08);
-        }
-
-        .service-number {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            opacity: 0.45;
-        }
-
-        .service-card h3 {
-            font-size: 1.55rem;
-            margin: 35px 0 12px;
-        }
-
-        .service-card p {
-            opacity: 0.62;
-        }
-
-
-        /* =========================
-           PORTFOLIO
-        ========================= */
-
-        .portfolio {
-            background: #071a1b;
-        }
-
-        .portfolio-header {
-            max-width: 700px;
-            margin-bottom: 55px;
-        }
-
-        .portfolio-header h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1;
-            margin-top: 10px;
-        }
-
-        .portfolio-header p {
-            margin-top: 18px;
-            opacity: 0.65;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .portfolio-card {
-            position: relative;
-            min-height: 380px;
-
-            overflow: hidden;
-
-            background: #123536;
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-
-            transition: transform 0.5s;
-        }
-
-        .portfolio-card:hover img {
-            transform: scale(1.04);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            padding: 35px;
-
-            background: linear-gradient(
-                transparent,
-                rgba(0,0,0,0.85)
-            );
-        }
-
-        .portfolio-overlay small {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.65;
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 1.7rem;
-            margin-top: 5px;
-        }
-
-
-        /* =========================
-           VIDEO PROJECT
-        ========================= */
-
-        .video-section {
-            background: #0d292a;
-        }
-
-        .video-header {
-            max-width: 700px;
-            margin-bottom: 45px;
-        }
-
-        .video-header h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1;
-            margin-top: 10px;
-        }
-
-        .video-header p {
-            margin-top: 18px;
-            opacity: 0.65;
-        }
-
-        .video-container {
-            width: 100%;
-            background: #000;
-        }
-
-        .video-container video {
-            width: 100%;
-            display: block;
-        }
-
-
-        /* =========================
-           CONSTRUCTION
-        ========================= */
-
-        .construction {
-            background: #f2f1eb;
-            color: #102526;
-        }
-
-        .construction-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .construction h2 {
-            font-size: clamp(2.5rem, 5vw, 4.2rem);
-            line-height: 1;
-            margin-top: 12px;
-        }
-
-        .construction p {
-            margin-top: 22px;
-            opacity: 0.65;
-            max-width: 600px;
-        }
-
-        .construction-list {
-            margin-top: 30px;
-            list-style: none;
-        }
-
-        .construction-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #d1d0c8;
-            font-weight: 600;
-        }
-
-
-        /* =========================
-           ABOUT
-        ========================= */
-
-        .about {
-            background: #123536;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about h2 {
-            font-size: clamp(2.5rem, 5vw, 4.2rem);
-            line-height: 1;
-            margin-top: 12px;
-        }
-
-        .about p {
-            margin-top: 22px;
-            opacity: 0.72;
-        }
-
-        .about-box {
-            padding: 45px;
-            border: 1px solid rgba(255,255,255,0.16);
-        }
-
-        .about-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        .contact {
-            background: #f2f1eb;
-            color: #102526;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-        }
-
-        .contact h2 {
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 0.9;
-        }
-
-        .contact-info {
-            margin-top: 30px;
-            opacity: 0.65;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-
-            padding: 16px;
-
-            border: 1px solid #cecdc5;
-            background: #ffffff;
-
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        form button {
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 35px 8%;
-
-            display: flex;
-            justify-content: space-between;
-
-            background: #041011;
-
-            font-size: 0.8rem;
-            opacity: 0.65;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 800px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            section {
-                padding: 75px 7%;
-            }
-
-            .hero {
-                padding: 130px 7% 80px;
-            }
-
-            .hero h1 {
-                letter-spacing: -2px;
-            }
-
-            .button-outline {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-
-            .intro-grid,
-            .service-grid,
-            .portfolio-grid,
-            .construction-grid,
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .intro-grid,
-            .construction-grid,
-            .about-grid,
-            .contact-grid {
-                gap: 45px;
-            }
-
-            .portfolio-card {
-                min-height: 300px;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Marsh Drone | South Louisiana Aerial Imaging</title>
+
+<meta name="description" content="Marsh Drone provides professional aerial photography, video, construction imaging, and mapping across South Louisiana.">
+
+<style>
+
+:root {
+    --dark: #0b1f33;
+    --dark2: #102b45;
+    --cream: #f3f0e7;
+    --light: #faf9f5;
+    --accent: #b99b68;
+    --text: #243342;
+    --muted: #667685;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    z-index: 1000;
+
+    background: rgba(16, 44, 43, 0.94);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 145px;
+    height: auto;
+    max-height: 58px;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    color: white;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.nav-links a {
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.65;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    padding: 180px 8% 100px;
+
+    display: flex;
+    align-items: center;
+
+   background:
+    linear-gradient(
+        120deg,
+        rgba(11,31,51,0.97),
+        rgba(16,43,69,0.88)
+    );
+
+    color: white;
+}
+
+.hero-content {
+    max-width: 950px;
+}
+
+.eyebrow {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #d1c5a9;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 8vw, 105px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    margin-bottom: 32px;
+}
+
+.hero h1 span {
+    color: #d6c6a6;
+}
+
+.hero p {
+    max-width: 650px;
+    font-size: 19px;
+    color: #d7dfdc;
+    margin-bottom: 40px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 25px;
+    border: 1px solid white;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    transition: all 0.25s ease;
+}
+
+.btn-primary {
+    background: white;
+    color: var(--dark);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+section {
+    padding: 110px 8%;
+}
+
+.section-label {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: clamp(38px, 5vw, 65px);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    background: var(--cream);
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.intro p {
+    font-size: 21px;
+    color: var(--muted);
+    max-width: 650px;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services {
+    background: var(--dark);
+    color: white;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 60px;
+    background: rgba(255,255,255,0.15);
+}
+
+.service {
+    padding: 45px 30px;
+    background: var(--dark);
+    min-height: 250px;
+}
+
+.service-number {
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.service h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.service p {
+    color: #b9c7c4;
+    font-size: 15px;
+}
+
+/* =========================
+   PORTFOLIO
+========================= */
+
+.portfolio {
+    background: var(--light);
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 50px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+    background: #ddd;
+    min-height: 400px;
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.portfolio-card:hover img {
+    transform: scale(1.04);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 35px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,0.75)
+    );
+
+    color: white;
+}
+
+.portfolio-overlay span {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #d7c8a8;
+}
+
+.portfolio-overlay h3 {
+    font-size: 28px;
+    margin-top: 5px;
+}
+
+/* =========================
+   VIDEO
+========================= */
+
+.video-section {
+    background: var(--dark2);
+    color: white;
+}
+
+.video-wrapper {
+    margin-top: 50px;
+    width: 100%;
+    overflow: hidden;
+    background: black;
+}
+
+.video-wrapper video {
+    width: 100%;
+    display: block;
+    max-height: 700px;
+    object-fit: cover;
+}
+
+/* =========================
+   CONSTRUCTION
+========================= */
+
+.construction {
+    background: var(--cream);
+}
+
+.construction-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.construction-intro p {
+    font-size: 20px;
+    color: var(--muted);
+    max-width: 550px;
+}
+
+.capabilities {
+    border-top: 1px solid #cfc9bb;
+}
+
+.capability {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid #cfc9bb;
+}
+
+.capability span {
+    color: var(--muted);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    background: var(--dark);
+    color: white;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+.about p {
+    color: #c2cfcc;
+    font-size: 19px;
+}
+
+.about-highlight {
+    border-left: 2px solid var(--accent);
+    padding-left: 30px;
+}
+
+.about-highlight h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    background: var(--light);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+.contact-text p {
+    font-size: 19px;
+    color: var(--muted);
+    max-width: 500px;
+}
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #ccc8bb;
+    background: white;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+button {
+    padding: 17px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #0b2221;
+    color: #9eafac;
+    padding: 45px 8%;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-logo img {
+    width: 125px;
+    height: auto;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+footer p {
+    font-size: 12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .logo img {
+        width: 125px;
+    }
+
+    .intro-grid,
+    .construction-grid,
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-card {
+        min-height: 350px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    section {
+        padding: 80px 6%;
+    }
+
+    .hero {
+        padding: 150px 6% 80px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-card {
+        min-height: 300px;
+    }
+
+    .portfolio-header {
+        display: block;
+    }
+
+}
+
+</style>
 </head>
-
 
 <body>
 
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
+<nav>
 
-    <nav>
+    <a href="#top" class="logo">
+        <img src="logo.png" alt="Marsh Drone">
+    </a>
 
-        <a href="#" class="logo">
-            MARSH
-            <span>DRONE</span>
-        </a>
+    <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#construction">Construction</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
 
-        <ul class="nav-links">
-
-            <li>
-                <a href="#services">Services</a>
-            </li>
-
-            <li>
-                <a href="#portfolio">Work</a>
-            </li>
-
-            <li>
-                <a href="#about">About</a>
-            </li>
-
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-
-        </ul>
-
-    </nav>
+</nav>
 
 
-    <!-- =========================
-         HERO
-    ========================= -->
+<!-- =========================
+     HERO
+========================= -->
 
-    <section class="hero">
+<header class="hero" id="top">
 
-        <div class="hero-content">
+    <div class="hero-content">
 
-            <div class="eyebrow">
-                South Louisiana Aerial Imaging
-            </div>
+        <div class="eyebrow">
+            South Louisiana Aerial Imaging
+        </div>
 
-            <h1>
-                THE MARSH<br>
-                <span>LOOKS DIFFERENT FROM UP HERE.</span>
-            </h1>
+        <h1>
+            THE MARSH<br>
+            <span>LOOKS DIFFERENT FROM UP HERE.</span>
+        </h1>
 
-            <p class="hero-description">
-                Aerial photography, video, and imaging for properties,
-                businesses, and projects across South Louisiana.
-            </p>
+        <p>
+            Aerial photography, video, and imaging for properties,
+            businesses, and projects across South Louisiana.
+        </p>
 
-            <a href="#portfolio" class="button">
+        <div class="buttons">
+
+            <a href="#work" class="btn btn-primary">
                 View Our Work
             </a>
 
-            <a href="#contact" class="button button-outline">
+            <a href="#contact" class="btn">
                 Request a Quote
             </a>
 
         </div>
 
-    </section>
+    </div>
+
+</header>
 
 
-    <!-- =========================
-         INTRO
-    ========================= -->
+<!-- =========================
+     INTRO
+========================= -->
 
-    <section class="intro">
+<section class="intro">
 
-        <div class="container intro-grid">
+    <div class="intro-grid">
 
-            <div>
+        <div>
 
-                <div class="section-label">
-                    A different perspective
-                </div>
-
-                <h2>
-                    Your land.<br>
-                    Our perspective.
-                </h2>
-
+            <div class="section-label">
+                A Different Perspective
             </div>
 
-            <div>
-
-                <p>
-                    From the marshes and bayous to the jobsite,
-                    Marsh Drone provides professional aerial imagery
-                    that helps you see more of what matters.
-                </p>
-
-                <p>
-                    Whether you're showcasing a property, documenting
-                    a project, or creating something worth remembering,
-                    we bring a local perspective to every flight.
-                </p>
-
-            </div>
+            <h2>
+                Your land.<br>
+                Our perspective.
+            </h2>
 
         </div>
 
-    </section>
+        <div>
 
-
-    <!-- =========================
-         SERVICES
-    ========================= -->
-
-    <section class="services" id="services">
-
-        <div class="container">
-
-            <div class="services-header">
-
-                <div class="section-label">
-                    What we do
-                </div>
-
-                <h2>
-                    More than just a view.
-                </h2>
-
-                <p>
-                    Professional drone services built around
-                    what your project actually needs.
-                </p>
-
-            </div>
-
-
-            <div class="service-grid">
-
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        01
-                    </div>
-
-                    <h3>
-                        Aerial Photography
-                    </h3>
-
-                    <p>
-                        High-quality aerial photography for
-                        properties, land, businesses, venues,
-                        and special projects.
-                    </p>
-
-                </div>
-
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        02
-                    </div>
-
-                    <h3>
-                        Aerial Video
-                    </h3>
-
-                    <p>
-                        Cinematic aerial footage for properties,
-                        venues, businesses, marketing, and
-                        promotional content.
-                    </p>
-
-                </div>
-
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        03
-                    </div>
-
-                    <h3>
-                        Construction
-                    </h3>
-
-                    <p>
-                        Aerial progress documentation and
-                        project imagery that gives owners and
-                        project teams a clear view from above.
-                    </p>
-
-                </div>
-
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        04
-                    </div>
-
-                    <h3>
-                        Mapping & Imaging
-                    </h3>
-
-                    <p>
-                        Aerial mapping and imaging services for
-                        property, land, and construction applications.
-                    </p>
-
-                </div>
-
-
-            </div>
+            <p>
+                From Louisiana marshes and bayous to active jobsites,
+                Marsh Drone provides a different way to see the land.
+                Professional aerial imagery built around the needs of
+                property owners, businesses, and project teams.
+            </p>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         PORTFOLIO
-    ========================= -->
+<!-- =========================
+     SERVICES
+========================= -->
 
-    <section class="portfolio" id="portfolio">
+<section class="services" id="services">
 
-        <div class="container">
+    <div class="section-label">
+        What We Do
+    </div>
 
-            <div class="portfolio-header">
+    <h2>
+        Aerial imaging<br>
+        built for the real world.
+    </h2>
 
-                <div class="section-label">
-                    Selected work
-                </div>
+    <div class="services-grid">
 
-                <h2>
-                    A view from above.
-                </h2>
+        <div class="service">
 
-                <p>
-                    A growing collection of aerial photography,
-                    video, and project work from South Louisiana.
-                </p>
+            <div class="service-number">01</div>
 
-            </div>
+            <h3>Aerial Photography</h3>
 
-
-            <div class="portfolio-grid">
-
-
-                <!-- HORSE PHOTO -->
-
-                <div class="portfolio-card">
-
-                    <img
-                        src="horse.jpg"
-                        alt="Aerial photography of horses and Louisiana property"
-                    >
-
-                    <div class="portfolio-overlay">
-
-                        <small>
-                            Aerial Photography
-                        </small>
-
-                        <h3>
-                            Louisiana Property
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SECOND PHOTO -->
-
-                <div class="portfolio-card">
-
-                    <img
-                        src="portfolio-2.jpg"
-                        alt="Marsh Drone aerial photography"
-                    >
-
-                    <div class="portfolio-overlay">
-
-                        <small>
-                            Aerial Imaging
-                        </small>
-
-                        <h3>
-                            South Louisiana
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <!-- THIRD PHOTO -->
-
-                <div class="portfolio-card">
-
-                    <img
-                        src="portfolio-3.jpg"
-                        alt="Marsh Drone aerial project"
-                    >
-
-                    <div class="portfolio-overlay">
-
-                        <small>
-                            Aerial Photography
-                        </small>
-
-                        <h3>
-                            From Above
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <!-- FOURTH PHOTO -->
-
-                <div class="portfolio-card">
-
-                    <img
-                        src="portfolio-4.jpg"
-                        alt="Marsh Drone aerial project"
-                    >
-
-                    <div class="portfolio-overlay">
-
-                        <small>
-                            Project Work
-                        </small>
-
-                        <h3>
-                            More Coming Soon
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-            </div>
+            <p>
+                High-resolution aerial photography for
+                properties, land, businesses, and projects.
+            </p>
 
         </div>
 
-    </section>
 
+        <div class="service">
 
-    <!-- =========================
-         VIDEO
-    ========================= -->
+            <div class="service-number">02</div>
 
-    <section class="video-section">
+            <h3>Aerial Video</h3>
 
-        <div class="container">
-
-            <div class="video-header">
-
-                <div class="section-label">
-                    From the air
-                </div>
-
-                <h2>
-                    See it for yourself.
-                </h2>
-
-                <p>
-                    Aerial video captures places and projects
-                    from a perspective you can't get from the ground.
-                </p>
-
-            </div>
-
-
-            <div class="video-container">
-
-                <video controls poster="video-poster.jpg">
-
-                    <source
-                        src="barn-video.mp4"
-                        type="video/mp4"
-                    >
-
-                    Your browser does not support video playback.
-
-                </video>
-
-            </div>
+            <p>
+                Cinematic drone video for marketing,
+                documentation, and storytelling.
+            </p>
 
         </div>
 
-    </section>
 
+        <div class="service">
 
-    <!-- =========================
-         CONSTRUCTION
-    ========================= -->
+            <div class="service-number">03</div>
 
-    <section class="construction">
+            <h3>Construction</h3>
 
-        <div class="container construction-grid">
-
-            <div>
-
-                <div class="section-label">
-                    Built for the jobsite
-                </div>
-
-                <h2>
-                    A better view of your project.
-                </h2>
-
-                <p>
-                    Construction sites are constantly changing.
-                    Consistent aerial imagery can help teams
-                    document progress, communicate conditions,
-                    and give stakeholders a better understanding
-                    of the project as it develops.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <ul class="construction-list">
-
-                    <li>
-                        Progress Documentation
-                    </li>
-
-                    <li>
-                        Site Overview
-                    </li>
-
-                    <li>
-                        Project Photography
-                    </li>
-
-                    <li>
-                        Aerial Video
-                    </li>
-
-                    <li>
-                        Future Mapping & 3D Imaging
-                    </li>
-
-                </ul>
-
-            </div>
+            <p>
+                Progress documentation, site overviews,
+                project photography, and aerial video.
+            </p>
 
         </div>
 
-    </section>
+
+        <div class="service">
+
+            <div class="service-number">04</div>
+
+            <h3>Mapping & Imaging</h3>
+
+            <p>
+                Aerial data and imaging solutions with
+                future-ready mapping and 3D capabilities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
+<!-- =========================
+     PORTFOLIO
+========================= -->
 
-    <section class="about" id="about">
+<section class="portfolio" id="work">
 
-        <div class="container about-grid">
+    <div class="portfolio-header">
 
-            <div>
+        <div>
 
-                <div class="section-label">
-                    About Marsh Drone
-                </div>
-
-                <h2>
-                    Built in<br>
-                    South Louisiana.
-                </h2>
-
-                <p>
-                    Marsh Drone is a Louisiana-based aerial imaging
-                    company focused on providing professional drone
-                    photography, video, and project documentation.
-                </p>
-
-                <p>
-                    We're local, independent, and focused on
-                    delivering useful imagery—not just flying a
-                    drone around for the sake of it.
-                </p>
-
+            <div class="section-label">
+                Selected Work
             </div>
 
+            <h2>
+                A view from above.
+            </h2>
 
-            <div class="about-box">
+        </div>
+
+    </div>
+
+
+    <div class="portfolio-grid">
+
+        <!-- HORSE PHOTO -->
+
+        <div class="portfolio-card">
+
+            <img
+                src="horse.jpg"
+                alt="Aerial view of horse property in South Louisiana"
+            >
+
+            <div class="portfolio-overlay">
+
+                <span>
+                    Aerial Photography
+                </span>
 
                 <h3>
-                    Professional. Local. Above the ordinary.
+                    Property & Land
                 </h3>
 
-                <p>
-                    FAA Part 107 certified drone operations with
-                    an emphasis on safe, professional, and
-                    high-quality aerial imagery.
-                </p>
+            </div>
+
+        </div>
+
+
+        <!-- PLACEHOLDER -->
+
+        <div class="portfolio-card">
+
+            <img
+                src="portfolio-2.jpg"
+                alt="Marsh Drone aerial photography"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="portfolio-overlay">
+
+                <span>
+                    Aerial Imaging
+                </span>
+
+                <h3>
+                    Coming Soon
+                </h3>
 
             </div>
 
         </div>
 
-    </section>
 
+        <!-- PLACEHOLDER -->
 
-    <!-- =========================
-         CONTACT
-    ========================= -->
+        <div class="portfolio-card">
 
-    <section class="contact" id="contact">
+            <img
+                src="portfolio-3.jpg"
+                alt="Marsh Drone aerial photography"
+                onerror="this.style.display='none'"
+            >
 
-        <div class="container contact-grid">
+            <div class="portfolio-overlay">
 
+                <span>
+                    Aerial Imaging
+                </span>
 
-            <div>
-
-                <h2>
-                    LET'S<br>
-                    FLY.
-                </h2>
-
-                <div class="contact-info">
-
-                    <p>
-                        Have a project in mind?
-                    </p>
-
-                    <p>
-                        Tell us what you're looking for and
-                        we'll get back to you.
-                    </p>
-
-                    <br>
-
-                    <p>
-                        <strong>
-                            Serving South Louisiana
-                        </strong>
-                    </p>
-
-                    <p>
-                        Marsh Drone
-                    </p>
-
-                </div>
+                <h3>
+                    Coming Soon
+                </h3>
 
             </div>
 
-
-            <form>
-
-                <input
-                    type="text"
-                    placeholder="Your Name"
-                    required
-                >
-
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                >
-
-                <input
-                    type="tel"
-                    placeholder="Phone Number"
-                >
-
-                <select>
-
-                    <option value="">
-                        What do you need?
-                    </option>
-
-                    <option>
-                        Aerial Photography
-                    </option>
-
-                    <option>
-                        Aerial Video
-                    </option>
-
-                    <option>
-                        Construction Progress
-                    </option>
-
-                    <option>
-                        Mapping & Imaging
-                    </option>
-
-                    <option>
-                        Other
-                    </option>
-
-                </select>
+        </div>
 
 
-                <textarea
-                    placeholder="Tell us about your project..."
-                ></textarea>
+        <!-- PLACEHOLDER -->
 
+        <div class="portfolio-card">
 
-                <button
-                    type="submit"
-                    class="button"
-                >
-                    Request a Quote
-                </button>
+            <img
+                src="portfolio-4.jpg"
+                alt="Marsh Drone aerial photography"
+                onerror="this.style.display='none'"
+            >
 
-            </form>
+            <div class="portfolio-overlay">
 
+                <span>
+                    Aerial Imaging
+                </span>
+
+                <h3>
+                    Coming Soon
+                </h3>
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
+<!-- =========================
+     BARN VIDEO
+========================= -->
 
-    <footer>
+<section class="video-section">
+
+    <div class="section-label">
+        From The Air
+    </div>
+
+    <h2>
+        See it for yourself.
+    </h2>
+
+    <div class="video-wrapper">
+
+        <video
+            controls
+            muted
+            playsinline
+            preload="metadata"
+        >
+
+            <source
+                src="barn-video.mp4"
+                type="video/mp4"
+            >
+
+            Your browser does not support HTML5 video.
+
+        </video>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONSTRUCTION
+========================= -->
+
+<section class="construction" id="construction">
+
+    <div class="construction-grid">
+
+        <div class="construction-intro">
+
+            <div class="section-label">
+                Built For The Jobsite
+            </div>
+
+            <h2>
+                A better view<br>
+                of your project.
+            </h2>
+
+            <p>
+                Aerial imagery can give project teams a clear
+                view of what's happening on the ground — without
+                having to be on the ground.
+            </p>
+
+        </div>
+
+
+        <div class="capabilities">
+
+            <div class="capability">
+                <strong>Progress Documentation</strong>
+                <span>01</span>
+            </div>
+
+            <div class="capability">
+                <strong>Site Overview</strong>
+                <span>02</span>
+            </div>
+
+            <div class="capability">
+                <strong>Project Photography</strong>
+                <span>03</span>
+            </div>
+
+            <div class="capability">
+                <strong>Aerial Video</strong>
+                <span>04</span>
+            </div>
+
+            <div class="capability">
+                <strong>Future Mapping & 3D Imaging</strong>
+                <span>05</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about" id="about">
+
+    <div class="about-grid">
 
         <div>
-            © 2026 Marsh Drone
+
+            <div class="section-label">
+                About Marsh Drone
+            </div>
+
+            <h2>
+                Built in<br>
+                South Louisiana.
+            </h2>
+
+            <p>
+                Marsh Drone is a South Louisiana aerial imaging
+                company focused on providing professional,
+                reliable drone photography, video, and imaging.
+            </p>
+
         </div>
 
-        <div>
-            South Louisiana Aerial Imaging
+
+        <div class="about-highlight">
+
+            <h3>
+                Professional.<br>
+                Local.<br>
+                Above the ordinary.
+            </h3>
+
+            <p>
+                FAA Part 107 certified drone operations with
+                a local understanding of the land, businesses,
+                and projects we serve.
+            </p>
+
         </div>
 
-    </footer>
+    </div>
 
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact" id="contact">
+
+    <div class="contact-grid">
+
+        <div class="contact-text">
+
+            <div class="section-label">
+                Get In Touch
+            </div>
+
+            <h2>
+                LET'S FLY.
+            </h2>
+
+            <p>
+                Have a property, project, or idea that could
+                use a different perspective? Tell us about it.
+            </p>
+
+        </div>
+
+
+        <form>
+
+            <input
+                type="text"
+                placeholder="Name"
+            >
+
+            <input
+                type="email"
+                placeholder="Email"
+            >
+
+            <input
+                type="text"
+                placeholder="Project / Service"
+            >
+
+            <textarea
+                placeholder="Tell us about your project..."
+            ></textarea>
+
+            <button type="submit">
+                Request a Quote
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        <img
+            src="logo.png"
+            alt="Marsh Drone"
+        >
+
+    </div>
+
+    <p>
+        © 2026 Marsh Drone · South Louisiana Aerial Imaging
+    </p>
+
+</footer>
 
 </body>
 </html>
